@@ -190,10 +190,11 @@
           <p>
             ScrewMimic inputs an RGB-D video of a human performing a bimanual task and uses off-the-shelf hand tracking (HT) 
             models to extract a trajectory of wrist poses (&tau;<sup>h</sup><sub>l</sub>, &tau;<sup>h</sup><sub>r</sub>) and grasp contact 
-            points (ghl , ghr ). SCREWMIMIC interprets &tau; h as a screw motion between both
-hands to estimate screw axis parameters S<sup>h</sup> (Sec. IV-A). b) Next, we apply geometric augmentations on the 3D object point cloud to train a PointNet [71]
-model to estimate screw actions for novel object views (Sec. IV-B). c) Finally, the trained model generates an initial hypothesis that the robot executes and
-iteratively refines using an autonomously generated reward signal. The successful data point is further used to improve the prediction model (Sec. IV-C).        
+            points (g<sup>h</sup><sub>l</sub> , g<sup>h</sup><sub>r</sub> ). ScrewMimic interprets &tau;<sup>h</sup><sub>l</sub> and &tau;<sup>h</sup><sub>r</sub>
+            as a screw motion between both hands to estimate screw axis parameters S<sup>h</sup> (a). 
+            Next, it applies geometric augmentations on the 3D object point cloud to train a PointNet model to estimate screw actions for novel
+            object views (b). Finally, the trained model generates an initial hypothesis that the robot executes and iteratively refines
+            using an autonomously generated reward signal (c). The successful data point is further used to improve the prediction model.        
           </p>
         </div>
         <!-- Your image here -->
