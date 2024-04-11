@@ -317,10 +317,11 @@
 
     <h2 class="title is-4" style="margin-left: 10%;">Generalization Results on Novel Objects</h2>
     <div class="columns is-centered">
-      <p>However, after fine-tuning and obtaining model M3, SCREWMIMIC can complete the task with the new object almost zero-shot 
-        (Table II, fourth column). For the insert roll task, the initial screw action prediction is good as the structural difference is 
-        smaller between the old and the new object. This indicates that SCREWMIMIC helps create a self- learning loop where the robot can 
-        continually expand its manipulation capabilities to new objects.</p>
+      <p>We Evaluate ScrewMimic on novel objects. Note that in this case, the screw action prediction model was only trained on the training object. As can be seen
+        in the following videos, ScrewMimic is able to fine-tune the screw action to successfully manipulate novel objects. In the paper we 
+        further show that if we re-train the screw axis prediction model with the corrected screw action,  ScrewMimic can complete the task with the new object almost zero-shot. 
+        This indicates that ScrewMimic helps create a self- learning loop where the robot can continually expand its manipulation capabilities 
+        to new objects.</p>
     </div>
     <div class="columns is-centered">
         <div class="column is-two-fifths">
