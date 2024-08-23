@@ -2,7 +2,6 @@
 <div style="text-align: center;">
 
 [Arpit Bahety](https://arpitrf.github.io/), [Priyanka Mandikal](https://priyankamandikal.github.io/) [Ben Abbatematteo](https://babbatem.github.io/), [Roberto Martín-Martín](https://robertomartinmartin.com/) 
-
 The University of Texas at Austin
 
 [Project Page](https://robin-lab.cs.utexas.edu/ScrewMimic/) | [Arxiv](https://arxiv.org/abs/2405.03666) | [Video](https://www.youtube.com/watch?v=sPNoKgoxpuc)
@@ -30,10 +29,10 @@ python -m demo.demo_handmocap --input_path {path_to_rgb_img_folder} --out_dir ./
 
 Extract hand poses (remember to set the frankmocap output directory in the code)
 ```
-python perception/extract_hand_poses.py --folder_name data/bottle_1
+python perception/extract_hand_poses.py --folder_name data/open_bottle_1
 ```
 
 Obtain screw axis
 ```
-python perception/extract_screw_action.py --f_name data/bottle_1 --hand right
+python perception/extract_screw_action.py --f_name data/open_bottle_1 --hand left
 ```
