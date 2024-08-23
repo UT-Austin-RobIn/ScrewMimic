@@ -55,7 +55,6 @@ def compute_screw_axis_revolute(start_T, final_T):
     return screw_axis, q
 
 def circle_equation(x, h, k, l, r):
-    # print("x, h, k, l, r: ", x, h, k, l, r)
     return (x[0] - h)**2 + (x[1] - k)**2 + (x[2] - l)**2 - r**2
 
 def compute_screw_axis_revolute3d(Ts, pts_to_compute_normal=[10, 1, 12, 3]):
@@ -129,7 +128,6 @@ def compute_trajectory_prismatic(T0, s_hat, len_hand_pts, theta_step=0.007):
         S_theta = theta * np.array(S)
         T1 = np.dot(expm(S_theta), T0)
         computed_Ts.append(T1)
-        # print("pose: ", T1[:3, 3])
     return computed_Ts
 
 def compute_trajectory_screw(T0, s_hat, q, len_hand_pts, theta_step=0.0):
@@ -139,7 +137,6 @@ def compute_trajectory_screw(T0, s_hat, q, len_hand_pts, theta_step=0.0):
     twist = np.concatenate((w,v)) 
     # Calculate the matrix form of the twist vector
     w = twist[:3]
-    # w_matrix = R.from_rotvec(w).as_matrix()
     w_matrix = [
         [0, -w[2], w[1]],
         [w[2], 0, -w[0]],
@@ -152,7 +149,6 @@ def compute_trajectory_screw(T0, s_hat, q, len_hand_pts, theta_step=0.0):
         [w_matrix[2][0], w_matrix[2][1], w_matrix[2][2], twist[5]],
         [0, 0, 0, 0]
     ]
-    # S = log_T
     computed_Ts.append(T0)
 
     # calculate the thetas
@@ -161,14 +157,10 @@ def compute_trajectory_screw(T0, s_hat, q, len_hand_pts, theta_step=0.0):
         thetas.append(i*theta_step)
     
     # Calculate the transformation of the point when moved by theta along the screw axis
-    # for theta in np.arange(0.1, 3.14, 0.1):
     for theta in thetas:
         S_theta = theta * np.array(S)
-
-        # T1 = np.dot(T0, expm(S_theta))
         T1 = np.dot(expm(S_theta), T0)
         computed_Ts.append(T1)
-        # print("computed Ts pos: ", T1[0][3], T1[1][3], T1[2][3])
     
     return computed_Ts
 
@@ -182,7 +174,6 @@ def compute_trajectory_revolute3d(T0, axis, q, len_hand_pts, theta_step=0.05):
     twist = np.concatenate((w,v)) 
     # Calculate the matrix form of the twist vector
     w = twist[:3]
-    # w_matrix = R.from_rotvec(w).as_matrix()
     w_matrix = [
         [0, -w[2], w[1]],
         [w[2], 0, -w[0]],
@@ -195,11 +186,7 @@ def compute_trajectory_revolute3d(T0, axis, q, len_hand_pts, theta_step=0.05):
         [w_matrix[2][0], w_matrix[2][1], w_matrix[2][2], twist[5]],
         [0, 0, 0, 0]
     ]
-    # S = log_T
     computed_Ts.append(T0)
-    # ax.scatter(T0[0][3], T0[1][3], T0[2][3], color=[0,0,0], marker='o', s=144)
-    # if show_screw:
-    #     ax.scatter(final_T[0][3], final_T[1][3], final_T[2][3], color=[0,1,1], marker='o',s=144)
 
     # calculate the thetas
     thetas = []
@@ -207,11 +194,8 @@ def compute_trajectory_revolute3d(T0, axis, q, len_hand_pts, theta_step=0.05):
         thetas.append(i*theta_step)
     
     # Calculate the transformation of the point when moved by theta along the screw axis
-    # for theta in np.arange(0.1, 3.14, 0.1):
     for theta in thetas:
         S_theta = theta * np.array(S)
-
-        # T1 = np.dot(T0, expm(S_theta))
         T1 = np.dot(expm(S_theta), T0)
         T1 = [
             [original_orientation[0][0], original_orientation[0][1], original_orientation[0][2], T1[0, 3]],
@@ -220,7 +204,6 @@ def compute_trajectory_revolute3d(T0, axis, q, len_hand_pts, theta_step=0.05):
             [0, 0, 0, 1]
         ]
         computed_Ts.append(T1)
-        # print("T1: ", T1[0][3], T1[1][3], T1[2][3])
     
     return computed_Ts
 
@@ -257,7 +240,7 @@ def main():
     with open(path, 'rb') as handle:
         hand_dict = pickle.load(handle)
 
-    # choose the acting had poses
+    # Choose the acting hand
     hand_dict = hand_dict[args.hand]
     print("hand_dict: ", hand_dict.keys())
 
@@ -313,14 +296,14 @@ def main():
     # ----------------------------------------------------------------------
 
     len_hand_pts = len(Ts)
+    
+    # Screw joint type 1: revolute joint
     min_screw_revolute_dist = 1000000
     final_axis_screw_revolute = None
     final_q_screw_revolute = None
     final_computed_Ts_screw = None
     final_start_T_revolute, final_end_T_revolute = None, None
     final_idx_revolute = None
-    
-    # Screw joint type 1: revolute joint
     for i in range(len(Ts)):
         for j in range(i+1, len(Ts)):
             # Compute the screw axis based on 2 poses 
