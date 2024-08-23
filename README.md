@@ -23,6 +23,8 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+The current codebase contains scripts to extract screw axes from a human RGBD video. 
+
 Run frankomcap on the human video
 ```
 python -m demo.demo_handmocap --input_path {path_to_rgb_img_folder} --out_dir ./mocap_output/{folder_name}/ --view_type ego_centric --save_pred_pkl
