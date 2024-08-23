@@ -35,5 +35,5 @@ python perception/extract_hand_poses.py --folder_name data/open_bottle_1
 
 Obtain screw axis
 ```
-python perception/extract_screw_action.py --f_name data/open_bottle_1 --hand left
+python perception/extract_screw_action.py --folder_name data/open_bottle_1 --hand left
 ```
