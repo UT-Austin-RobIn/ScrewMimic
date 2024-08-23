@@ -7,7 +7,7 @@ The University of Texas at Austin
 [Project Page](https://robin-lab.cs.utexas.edu/ScrewMimic/) | [Arxiv](https://arxiv.org/abs/2405.03666) | [Video](https://www.youtube.com/watch?v=sPNoKgoxpuc)
 
 <div style="margin:50px; text-align: justify;">
-<img style="width:100%;" src="assets/videos/teaser.m4v">
+<img style="width:100%;" src="assets/videos/teaser.gif">
 
 ScrewMimic aims to enable robots to learn bimanual manipulation behaviors from human video demonstrations and fine-tune them through interaction in the real world. Inspired by seminal work in psychology and biomechanics, we propose modeling the interaction between the two hands as a serial kinematic linkage — as a screw motion, in particular.
 
